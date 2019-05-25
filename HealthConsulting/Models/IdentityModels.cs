@@ -20,6 +20,9 @@ namespace HealthConsulting.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Appontment> Appontments { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

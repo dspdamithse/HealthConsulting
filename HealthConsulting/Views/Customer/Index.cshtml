@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HealthConsulting.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Home Contact Number</th>
+                <th>Mobile</th>
+                <th>Guadient's Name</th>
+                <th>Guadient's Contact Num</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                var FullName = customer.FirstName + " " + customer.LastName;
+                <tr>
+                    <td>@Html.ActionLink(FullName, "Edit", "Customer", new { id = customer.Id }, null)</td>
+                    <td>@customer.Address</td>
+                    <td>@customer.HomeTelephoneNumber</td>
+                    <td>@customer.MobileNumber</td>
+                    <td>@customer.GuardianName</td>
+                    <td>@customer.GuardianContactNumb</td>
+                    <td><a href="#" class="btn btn-warning">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

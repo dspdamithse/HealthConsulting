@@ -181,12 +181,31 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905250906523_InitialMigrationWithDoctors.cs" />
+    <Compile Include="Migrations\201905250906523_InitialMigrationWithDoctors.Designer.cs">
+      <DependentUpon>201905250906523_InitialMigrationWithDoctors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905250955289_CustomersAndAppointmentTableDraft.cs" />
+    <Compile Include="Migrations\201905250955289_CustomersAndAppointmentTableDraft.Designer.cs">
+      <DependentUpon>201905250955289_CustomersAndAppointmentTableDraft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905251036135_UpdateModels.cs" />
+    <Compile Include="Migrations\201905251036135_UpdateModels.Designer.cs">
+      <DependentUpon>201905251036135_UpdateModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Appontment.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -250,9 +269,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\CustomerForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Dtos\" />
+    <Folder Include="Models\ViewModels\" />
+    <Folder Include="Views\Appointment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -266,6 +291,17 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201905250906523_InitialMigrationWithDoctors.resx">
+      <DependentUpon>201905250906523_InitialMigrationWithDoctors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905250955289_CustomersAndAppointmentTableDraft.resx">
+      <DependentUpon>201905250955289_CustomersAndAppointmentTableDraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251036135_UpdateModels.resx">
+      <DependentUpon>201905251036135_UpdateModels.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
