@@ -1,24 +1,236 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+body {
+    font-family: "Open Sans", sans-serif;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.clr {
+    clear: both;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.footer-wrapper {
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    margin: auto;
+    background-image: url(images/background-bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.footer-social-icons {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding-top: 20px;
+    margin-bottom: 40px;
+}
+
+.footer-social-icons ul {
+margin: 0px;
+padding: 0px;
+text-align: center;
+}
+
+.footer-social-icons ul li {
+display: inline-block;
+margin-right: 2px;
+width: 36px;
+height: 36px;
+text-align: center;
+}
+
+.footer-social-icons ul li a {
+    color: #ffffff;
+    display: block;
+    font-size: 22px;
+    text-shadow: 0px 0px 5px rgb(0, 0, 0, 0.75);
+    text-decoration: none;
+}
+
+.footer-social-icons ul li:nth-child(1) {
+    background: #673AB7;
+}
+
+.footer-social-icons ul li a i {
+    line-height: 36px;
+}
+
+.footer-mid-part {
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.footer-section-one {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 20px;
+    background: rgb(255,255,255,0.1);
+}
+
+.footer-section-two {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 20px;
+}
+
+.footer-section-three {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 20px;
+}
+
+.footer-section-four {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    padding: 20px;
+    background: rgb(255,255,255,0.1);
+    text-align: right;
+}
+
+.footer-heading {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    text-align: left;
+}
+
+.footer-heading h2 {
+    font-size: 1.5em;
+    text-align: left;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0px;
+}
+
+.footer-contact-box {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    margin-top: 13px;
+}
+
+.footer-contact-icon {
+    width: 25ps;
+    height: 25px;
+    float: left;
+}
+
+.footer-contact-icon i {
+    color: #fff;
+    font-size: 20px;
+}
+
+.footer-contact-text {
+    width: 85%;
+    height: auto;
+    float: left;
+    margin-left: 10px;
+}
+
+.footer-contact-text p {
+font-size: 14px;
+text-align: left;
+color: #fff;
+cursor: pointer;
+}
+
+.footer-contact-text p a {
+    font-size: 14px;
+    text-align: left;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-contact-text p:hover {
+    color: chartreuse;
+}
+
+.footer-contact-box:hover .footer-contact-icon i {
+    color: chartreuse;
+}
+
+.footer-contact-box:hover .footer-contact-text p a {
+    color: chartreuse;
+}
+
+.footer-links {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.footer-links ul {
+margin: 0px;
+padding: 0px;
+}
+
+.footer-links ul li {
+list-style-type: none;
+text-align: center;
+padding-top: 5px;
+}
+
+.footer-links ul li a {
+font-size: 14px;
+color: aqua;
+text-decoration: none;
+}
+
+.footer-links ul li a:hover {
+    color: brown;
+}
+
+.footer-section-two .footer-heading h2 {
+    text-align: center;
+}
+
+.footer-section-three .footer-heading h2 {
+    text-align: center;
+}
+
+
+.navbar-inverse {
+    background-color: #FF9800;
+    border-color: #ff9800;
+}
+
+.navbar {
+    min-height: 75px;
+    margin-bottom: 5px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #1d0f0a;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #673AB7;
+    opacity: 1;
+    font-size: 2em;
+    margin-top: 10px;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #ffffff;
+}
+
+@media (min-width: 768px) .navbar {
+    border-radius: 0px;
 }
