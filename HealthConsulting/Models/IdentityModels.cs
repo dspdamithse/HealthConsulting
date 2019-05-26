@@ -23,6 +23,8 @@ namespace HealthConsulting.Models
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Appontment> Appontments { get; set; }
+        public DbSet<SpecialListArea> SpecialListAreas { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

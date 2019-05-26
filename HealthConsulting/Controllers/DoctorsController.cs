@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
+using HealthConsulting.Models.ViewModels;
 
 namespace HealthConsulting.Controllers
 {
@@ -22,9 +24,9 @@ namespace HealthConsulting.Controllers
             _context.Dispose();
         }
 
-        public ViewResult Index()
+        public ActionResult Index()
         {
-            var doctor = _context.Doctors.ToList();
+            var doctor = _context.Doctors.Include(m => m.SpecialListAreas).ToList();
 
             return View(doctor);
         }
@@ -35,29 +37,45 @@ namespace HealthConsulting.Controllers
 
             if (doctor == null)
                 return HttpNotFound();
+            var viewModel = new DoctorFormViewModel
+            {
+                Doctors = doctor,
+                SpecialListAreas = _context.SpecialListAreas.ToList()
+            };
 
-            return View("CustomerForm", doctor);
+
+            return View("DoctorForm", viewModel);
         }
 
         public ActionResult New()
         {
-            return View("CustomerForm");
+            var specialistAreas = _context.SpecialListAreas.ToList();
+            var viewModel = new DoctorFormViewModel
+            {
+                Doctors = new Doctor(),
+                SpecialListAreas = specialistAreas
+            };
+
+            return View("DoctorForm", viewModel);
         }
 
         [HttpPost]
-        public ActionResult Save(Doctor doctor)
+        public ActionResult Save(Doctor Doctors)
         {
-            if (doctor.Id == 0)
-                _context.Doctors.Add(doctor);
+            if (Doctors.Id == 0)
+                _context.Doctors.Add(Doctors);
             else
             {
-                var customerInDb = _context.Customers.Single(c => c.Id == doctor.Id);
+                var customerInDb = _context.Doctors.Single(c => c.Id == Doctors.Id);
+                customerInDb.FirstName = Doctors.FirstName;
+                customerInDb.LastName = Doctors.LastName;
+                customerInDb.AboutHim = Doctors.AboutHim;
+                customerInDb.SpecialListAreasId = Doctors.SpecialListAreasId;
 
             }
-
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Customer");
+            return RedirectToAction("Index", "Doctors");
         }
     }
 }

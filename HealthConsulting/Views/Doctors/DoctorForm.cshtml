@@ -1,0 +1,30 @@
+﻿@model HealthConsulting.Models.ViewModels.DoctorFormViewModel
+@{
+    ViewBag.Title = "DoctorForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DoctorForm</h2>
+@using (Html.BeginForm("Save", "Doctors"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Doctors.FirstName)
+        @Html.TextBoxFor(m => m.Doctors.FirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Doctors.LastName)
+        @Html.TextBoxFor(m => m.Doctors.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Doctors.AboutHim)
+        @Html.TextBoxFor(m => m.Doctors.AboutHim, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Doctors.SpecialListAreasId)
+        @Html.DropDownListFor(m => m.Doctors.SpecialListAreasId, new SelectList(Model.SpecialListAreas, "Id", "Name"), "Select Specialist Category", new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.Doctors.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+

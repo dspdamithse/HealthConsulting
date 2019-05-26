@@ -5,13 +5,16 @@
 }
 
 <h2>Doctors</h2>
+<p>
+    @Html.ActionLink("New Doctor Add", "New", "Doctors", null, new { @class = "btn btn-primary" })
+</p>
 @if (!Model.Any())
 {
     <p>We don't have any Doctors yet.</p>
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="doctors" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Full Name</th>
@@ -25,13 +28,21 @@ else
             {
                 var FullName = doctor.FirstName + " " + doctor.LastName;
                 <tr>
-                    <td>@Html.ActionLink(FullName, "Edit", "Doctor", new { id = doctor.Id }, null)</td>
+                    <td>@Html.ActionLink(FullName, "Edit", "Doctors", new { id = doctor.Id }, null)</td>
                     <td>@doctor.AboutHim</td>
-                    <td>@doctor.SpecialistArea</td>
+                    <td>@doctor.SpecialListAreas.Name</td>
                     <td><a href="#" class="btn btn-warning">Delete</a></td>
                 </tr>
             }
         </tbody>
     </table>
 }
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#doctors").DataTable();
+        });
+    </script> 
+    
+ }
 
