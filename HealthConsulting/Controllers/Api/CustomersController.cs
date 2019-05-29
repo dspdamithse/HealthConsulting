@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using HealthConsulting.Models.Dtos;
+using AutoMapper;
 
 namespace HealthConsulting.Controllers.Api
 {
@@ -18,12 +20,12 @@ namespace HealthConsulting.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDTO> GetCustomers()
         {
 
-            return _context.Customers.ToList();
+            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDTO>);
         }
-        public Customer GetCustomer(int id)
+        public CustomerDTO GetCustomer(int id)
         {
 
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -31,21 +33,25 @@ namespace HealthConsulting.Controllers.Api
             if (customer == null)
                throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return customer;
+            return Mapper.Map<Customer, CustomerDTO>(customer);
         }
         [HttpPost]
-        public Customer CreateCustomer(Customer customer)
+        public CustomerDTO CreateCustomer(CustomerDTO customerDto)
         {
 
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            var customer = Mapper.Map<CustomerDTO, Customer>(customerDto);
+
             _context.Customers.Add(customer);
 
+            customerDto.Id = customer.Id;
             _context.SaveChanges();
-            return customer;
+            return customerDto;
         }
         [HttpPut]
-        public void UpdateCustomers(int id, Customer customer)
+        public void UpdateCustomers(int id, CustomerDTO customerDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -54,14 +60,8 @@ namespace HealthConsulting.Controllers.Api
 
             if (customerInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            customerInDb.FirstName = customer.FirstName;
-            customerInDb.LastName = customer.LastName;
-            customerInDb.Image = customer.Image;
-            customerInDb.Address = customer.Address;
-            customerInDb.HomeTelephoneNumber = customer.HomeTelephoneNumber;
-            customerInDb.MobileNumber = customer.MobileNumber;
-            customerInDb.GuardianName = customer.GuardianName;
-            customerInDb.GuardianContactNumb = customer.GuardianContactNumb;
+
+            Mapper.Map(customerDto, customerInDb);
 
 
             _context.SaveChanges();
