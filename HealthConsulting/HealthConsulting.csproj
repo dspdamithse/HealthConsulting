@@ -186,6 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\Api\DoctorsController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Dtos\CustomerDTO.cs" />
+    <Compile Include="Models\Dtos\DoctorDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SpecialListArea.cs" />
@@ -347,6 +349,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\DataTables\css\mixins.scss" />

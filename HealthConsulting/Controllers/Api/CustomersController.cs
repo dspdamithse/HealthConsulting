@@ -20,27 +20,28 @@ namespace HealthConsulting.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<CustomerDTO> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
+            var customersDto = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDTO>);
 
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDTO>);
+            return Ok(customersDto);
         }
-        public CustomerDTO GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
 
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
-               throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return Mapper.Map<Customer, CustomerDTO>(customer);
+            return Ok(Mapper.Map<Customer, CustomerDTO>(customer));
         }
         [HttpPost]
-        public CustomerDTO CreateCustomer(CustomerDTO customerDto)
+        public IHttpActionResult CreateCustomer(CustomerDTO customerDto)
         {
 
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customer = Mapper.Map<CustomerDTO, Customer>(customerDto);
 
@@ -48,34 +49,38 @@ namespace HealthConsulting.Controllers.Api
 
             customerDto.Id = customer.Id;
             _context.SaveChanges();
-            return customerDto;
+            return Created(new Uri(Request.RequestUri+"/"+ customer.Id), customerDto);
         }
         [HttpPut]
-        public void UpdateCustomers(int id, CustomerDTO customerDto)
+        public IHttpActionResult UpdateCustomers(int id, CustomerDTO customerDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             Mapper.Map(customerDto, customerInDb);
 
 
             _context.SaveChanges();
+
+            return Ok();
         }
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
+
+            return Ok();
 
         }
     }

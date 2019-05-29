@@ -13,7 +13,13 @@ namespace HealthConsulting.App_Start
         public MappingProfile()
         {
             Mapper.CreateMap<Customer, CustomerDTO>();
-            Mapper.CreateMap<CustomerDTO, Customer>();
+            Mapper.CreateMap<Doctor, DoctorDTO>();
+
+            Mapper.CreateMap<CustomerDTO, Customer>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
+
+            Mapper.CreateMap<DoctorDTO, Doctor>()
+               .ForMember(c => c.Id, opt => opt.Ignore());
         }
     }
 }

@@ -11,6 +11,7 @@ namespace HealthConsulting
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.js",
+                        "~/Scripts/bootbox.js",
                         "~/Scripts/datatables/jquery.dataTables.js",
                         "~/Scripts/datatables/dataTables.bootstrap.js"));
 
