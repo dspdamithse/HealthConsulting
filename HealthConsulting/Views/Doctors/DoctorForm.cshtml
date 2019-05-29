@@ -5,7 +5,7 @@
 }
 
 <h2>DoctorForm</h2>
-@using (Html.BeginForm("Save", "Doctors"))
+@using (Html.BeginForm("Save", "Doctors", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Doctors.FirstName)
@@ -14,6 +14,10 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Doctors.LastName)
         @Html.TextBoxFor(m => m.Doctors.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label for="image">Upload Image:</label>
+        <input class="form-control" type="file" name="image" id="image" />
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Doctors.AboutHim)
