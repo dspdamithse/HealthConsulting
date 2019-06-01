@@ -26,7 +26,7 @@ namespace HealthConsulting.Models
         public DbSet<SpecialListArea> SpecialListAreas { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("HealthConsulting", throwIfV1Schema: false)
         {
         }
 
